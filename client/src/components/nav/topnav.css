@@ -1,0 +1,11 @@
+.app-top-nav {
+  background-color: #0D1440 !important;
+}
+
+.navbar-brand {
+  color: #f5f5f5 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #f5f5f5 !important;
+}

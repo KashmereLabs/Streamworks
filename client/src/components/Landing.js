@@ -3,7 +3,6 @@ import { Container, Grid, Row, Col, Button } from 'react-bootstrap';
 import { createDfuseClient } from '@dfuse/client';
 import LoginPage from './LoginPage';
 import UserViewContainer from './user/UserViewContainer';
-import TopNav from './TopNav';
 import AppHome from './AppHome';
 import Web3 from 'web3';
 

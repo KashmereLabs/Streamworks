@@ -1,15 +1,11 @@
-import ManagerView from './ManagerView';
-import { listInvoices, listInvoicesSuccess, listInvoicesFailure } from '../../actions/manager';
+import TransactionStatus from './TransactionStatus';
+
 import {
-  payInvoice,
-  payInvoiceSuccess,
-  payInvoiceFailure,
+
   getPendingTransactionStatus,
   getPendingTransactionStatusSuccess,
   getPendingTransactionStatusFailure,
-  updateInvoice,
-  updateInvoiceSuccess,
-  updateInvoiceFailure
+
 }
 from '../../actions/transaction';
 
@@ -33,15 +29,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    listInvoices: () => {
-      dispatch(listInvoices()).then(function(response) {
-        if (response.payload.status === 200) {
-          dispatch(listInvoicesSuccess(response.payload.data));
-        }
-      }).catch(function(err) {
-        dispatch(listInvoicesFailure(err));
-      })
-    },
 
     getPendingTransactionStatus: (txId) => {
       async function subscribeUpdate(txId) {
@@ -64,25 +51,6 @@ const mapDispatchToProps = (dispatch) => {
 
     },
 
-    payInvoice: (transaction) => {
-      dispatch(payInvoice(transaction)).then(function(response) {
-        dispatch(payInvoiceSuccess(response.payload));
-        const updateInvoicePayload = {
-          'id': transaction._id,
-          'status': 'paid',
-          'transaction_hash': response.payload
-        };
-        dispatch(updateInvoice(updateInvoicePayload)).then(function(updateInvoiceResponse) {
-          dispatch(updateInvoiceSuccess(updateInvoiceResponse.payload));
-        }).catch(function(err) {
-          dispatch(updateInvoiceFailure(err));
-        })
-
-      }).catch(function(err) {
-        dispatch(payInvoiceFailure(err));
-      })
-
-    }
 
   }
 }
@@ -90,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ManagerView);
+)(TransactionStatus);

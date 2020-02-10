@@ -28,6 +28,35 @@ module.exports = {
     });
   },
 
+  makePaymentTransaction: function(transaction) {
+    const web3 = window.web3;
+    const amountString = web3.utils.toWei(transaction.amount.toString());
+
+    const params = {
+      from: transaction.recipient_address,
+      to: transaction.sender_address,
+      value: amountString,
+    };
+
+    return new Promise((resolve, reject) => {
+      web3.eth.sendTransaction(params, function(err, response) {
+        if (err) {
+          reject(err);
+        }
+        resolve(response);
+      })
+    });
+
+  },
+
+  getAccountDetails: function() {
+    const web3 = window.web3;
+
+    //  let accountBalance = web3.utils.fromWei(web3.eth.getBalance(web3.eth.coinbase));
+    // let balance = web3.eth.getBalance(web3.eth.coinbase);
+    //console.log(balance);
+    return { address: '', balance: '' };
+  },
   web3Authenticate: function() {
     console.log("HERE")
   }

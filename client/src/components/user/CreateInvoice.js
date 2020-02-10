@@ -16,8 +16,11 @@ export default class CreateInvoice extends Component {
     else {
       amount = pay;
     }
+    const sender_address = window.ethereum.selectedAddress;
+
     const payload = {
-      "address": address,
+      sender_address: sender_address.toLowerCase(),
+      recipient_address: address.toLowerCase(),
       amount: amount,
       description,
       label

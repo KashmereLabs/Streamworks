@@ -1,5 +1,13 @@
 import UserView from './UserView';
-import { submitInvoice, submitInvoiceSuccess, submitInvoiceFailure } from '../../actions/user';
+import {
+  submitInvoice,
+  submitInvoiceSuccess,
+  submitInvoiceFailure,
+  getPreviousInvoices,
+  getPreviousInvoicesSuccess,
+  getPreviousInvoicesFailure
+}
+from '../../actions/user';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -19,6 +27,14 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(submitInvoiceFailure(err));
       })
     },
+
+    getPreviousInvoices: () => {
+      dispatch(getPreviousInvoices()).then(function(response) {
+        dispatch(getPreviousInvoicesSuccess(response.payload.data));
+      }).catch(function(err) {
+        dispatch(getPreviousInvoicesFailure(err));
+      })
+    }
 
   }
 }

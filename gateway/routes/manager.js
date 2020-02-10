@@ -9,11 +9,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/invoices', function(req, res) {
   const { address } = req.query;
-  const managerAddress = address.toString();
-  console.log(managerAddress + "****");
+  const managerAddress = address.toLowerCase().toString();
 
-  Invoice.find({ 'address': managerAddress }).then(function(dataResponse) {
-    console.log(dataResponse);
+  Invoice.find({ 'recipient_address': managerAddress }).then(function(dataResponse) {
     res.send({ "message": "success", data: dataResponse });
   }).catch(function(err) {
     console.log("errror");

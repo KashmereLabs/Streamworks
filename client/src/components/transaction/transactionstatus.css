@@ -1,0 +1,20 @@
+.tx-divider {
+  width: 20px;
+  height: 4px;
+  background: "#d3d3d3";
+  display: inline-block;
+}
+
+.tx-previous-state {
+   display: inline-block; 
+}
+
+.tx-current-state {
+   display: inline-block; 
+}
+
+.transaction-status-container {
+  height: 240px;
+  background: #0D1440;
+  color: #fff;
+}

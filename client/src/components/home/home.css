@@ -1,0 +1,17 @@
+.left-label-container {
+  text-align: left;
+}
+
+.list-group {
+  border:2px solid #0D1440 !important;
+}
+
+.top-info-container {
+  background: #fff;
+  color: #0D1440;
+  border: 2px solid #0D1440;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 8px 16px;
+}

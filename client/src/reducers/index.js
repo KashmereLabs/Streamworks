@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import userReducer from './user';
 import managerReducer from './manager';
+import transactionReducer from './transaction';
 
 const rootReducer = combineReducers({
   user: userReducer,
-  manager: managerReducer
+  manager: managerReducer,
+  transaction: transactionReducer
 
 })
 

@@ -9,6 +9,9 @@ var invoiceSchema = new mongoose.Schema({
   amount: Number,
   description: String,
   label: String,
+  status: { type: String, default: 'unpaid' },
+  transaction_status: { type: String, default: 'unknown' },
+  transaction_hash: String
 });
 
 var Invoice = mongoose.model('Invoice', invoiceSchema);

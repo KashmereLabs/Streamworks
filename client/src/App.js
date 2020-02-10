@@ -12,16 +12,15 @@ import {
 from "react-router-dom";
 import ManagerViewContainer from './components/manager/ManagerViewContainer';
 import UserViewContainer from './components/user/UserViewContainer';
-import HomeView from './components/home/HomeView';
-import TopNav from './components/TopNav';
+import HomeViewContainer from './components/home/HomeViewContainer';
+import TopNav from './components/nav/TopNav';
 
 function App() {
   return (
     <Router>
-    
-    
     <div className="App">
         <TopNav/>
+   
         <Switch>
           <Route path="/manager">
             <ManagerViewContainer />
@@ -30,9 +29,10 @@ function App() {
             <UserViewContainer />
           </Route>
           <Route path="/">
-            <HomeView />
+            <HomeViewContainer />
           </Route>
         </Switch>
+ 
 
     </div>
       </Router>
