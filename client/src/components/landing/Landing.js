@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Container, Grid, Row, Col, Button } from 'react-bootstrap';
 import { createDfuseClient } from '@dfuse/client';
 import LoginPage from './LoginPage';
-import UserViewContainer from './user/UserViewContainer';
-import AppHome from './AppHome';
+
+
 import Web3 from 'web3';
 
 export default class Landing extends Component {
@@ -15,7 +15,7 @@ export default class Landing extends Component {
   componentWillMount() {
 
     const web3 = window.web3;
-
+    const self = this;
     if (!web3) {
       this.setState({ 'currentView': 'login' });
     }
@@ -25,16 +25,14 @@ export default class Landing extends Component {
     }
 
     window.addEventListener('load', async() => {
-      // Modern dapp browsers...
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         try {
-          // Request account access if needed
           await window.ethereum.enable();
 
         }
         catch (error) {
-          // User denied account access...
+          this.setState({ 'currentView': 'login' });
         }
       }
       // Legacy dapp browsers...
@@ -48,21 +46,35 @@ export default class Landing extends Component {
 
       }
     });
+    
+
+    if (web3 && web3.utils) {
+      let walletAddress = window.ethereum.selectedAddress;
+      web3.eth.getBalance(walletAddress, function(error, result) {
+
+        if (error) {
+          // Do nothing
+        }
+        else {
+          let balance = web3.utils.fromWei(result, 'ether');
+          let walletBalance = balance;
+       //   self.props.setUserWallet({'address': walletAddress, balance: balance});
+        }
+      })
+    }
+    
   }
   render() {
     let currentViewPage = <span/>;
     if (this.state.currentView === 'home') {
-      currentViewPage = <AppHome/>;
+      currentViewPage = this.props.children;
     }
     if (this.state.currentView === 'login') {
       currentViewPage = <LoginPage/>;
     }
     return (
       <div>
-  
-      <Container>
         {currentViewPage}
-      </Container>
       </div>
     )
   }

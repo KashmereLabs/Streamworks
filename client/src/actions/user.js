@@ -15,6 +15,10 @@ export const GET_PREVIOUS_INVOICES = 'GET_PREVIOUS_INVOICES';
 export const GET_PREVIOUS_INVOICES_SUCCESS = 'GET_PREVIOUS_INVOICES_SUCCESS';
 export const GET_PREVIOUS_INVOICES_FAILURE = 'GET_PREVIOUS_INVOICES_FAILURE';
 
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
+export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
+
 export function submitInvoice(payload) {
   const request = axios.post(`${API_SERVER}/user/invoice`, payload);
   return {
@@ -37,9 +41,9 @@ export function submitInvoiceFailure(err) {
   }
 }
 
-export function getWalletHistory() {
+export function getWalletHistory(type) {
   const walletAddress = window.ethereum.selectedAddress;
-  const request = searchWalletHistory(walletAddress);
+  const request = searchWalletHistory(walletAddress, type);
   return {
     type: GET_WALLET_HISTORY,
     payload: request
@@ -81,5 +85,28 @@ export function getPreviousInvoicesFailure(error) {
   return {
     type: GET_PREVIOUS_INVOICES_FAILURE,
     payload: error
+  }
+}
+
+export function getUserInfo() {
+  const walletAddress = window.ethereum.selectedAddress;
+  const request = axios.get(`${API_SERVER}/user/info?address=${walletAddress}`);
+  return {
+    type: GET_USER_INFO,
+    payload: request
+  }
+}
+
+export function getUserInfoSuccess(response) {
+  return {
+    type: GET_USER_INFO_SUCCESS,
+    payload: response
+  }
+}
+
+export function getUserInfoFailure(err) {
+  return {
+    type: GET_USER_INFO_FAILURE,
+    payload: err
   }
 }

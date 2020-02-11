@@ -11,6 +11,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^4.4.1",
     "ethereumjs-tx": "^2.1.2",
+    "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-bootstrap-table": "^4.3.1",

@@ -22,10 +22,17 @@ router.get('/invoices', function(req, res) {
   });
 });
 
+router.get('/info', function(req, res) {
+  const { address } = req.query;
+
+  invoice.find({ $or: [{ 'sender_address': address }, { 'recipient_address': address }] }).then(function(dataResponse) {
+    res.send({ "message": "success", 'data': dataResponse });
+  });
+
+});
+
 router.put('/invoice', function(req, res) {
   const { id, transaction_hash, status } = req.body;
-  console.log(req.body);
-
   invoice.findOne({ '_id': id.toString() }).then(function(invoiceDataResponse) {
     invoiceDataResponse.transaction_hash = transaction_hash;
     invoiceDataResponse.status = status;

@@ -123,8 +123,13 @@ module.exports = {
         return txQuery;
     },
 
-    searchWalletHistory: function(walletAddress) {
-        const query = `from: ${walletAddress}`;
+    searchWalletHistory: function(walletAddress, type) {
+
+        if (!type) {
+            type = 'from'
+        }
+
+        const query = `${type}: ${walletAddress}`;
         const txQuery = `{
           searchTransactions(indexName:CALLS query: "${query}", limit: 10, sort: DESC) {
             edges { 

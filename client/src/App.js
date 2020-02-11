@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Landing from './components/Landing';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,13 +14,14 @@ import ManagerViewContainer from './components/manager/ManagerViewContainer';
 import UserViewContainer from './components/user/UserViewContainer';
 import HomeViewContainer from './components/home/HomeViewContainer';
 import TopNav from './components/nav/TopNav';
+import Landing from './components/landing/Landing';
 
 function App() {
   return (
     <Router>
     <div className="App">
         <TopNav/>
-   
+        <Landing>
         <Switch>
           <Route path="/manager">
             <ManagerViewContainer />
@@ -32,10 +33,9 @@ function App() {
             <HomeViewContainer />
           </Route>
         </Switch>
- 
-
-    </div>
-      </Router>
+        </Landing>
+      </div>
+    </Router>
   );
 }
 
