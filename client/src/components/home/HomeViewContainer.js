@@ -1,6 +1,17 @@
 import HomeView from './HomeView';
 import { listInvoices, listInvoicesSuccess, listInvoicesFailure } from '../../actions/manager';
-import { getWalletHistory, getWalletHistorySuccess, getWalletHistoryFailure, getUserInfo, getUserInfoSuccess, getUserInfoFailure } from '../../actions/user';
+import {
+  getWalletHistory,
+  getWalletHistorySuccess,
+  getWalletHistoryFailure,
+  getUserInfo,
+  getUserInfoSuccess,
+  getUserInfoFailure,
+  getWalletEthBalance,
+  getWalletEthBalanceSuccess,
+  getWalletEthBalanceFailure
+}
+from '../../actions/user';
 
 import { connect } from 'react-redux';
 
@@ -42,6 +53,14 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(getWalletHistoryFailure(err));
       })
     },
+
+    getWalletEthBalance: () => {
+      dispatch(getWalletEthBalance()).then(function(response) {
+        dispatch(getWalletEthBalanceSuccess(response.payload))
+      }).catch(function(err) {
+        dispatch(getWalletEthBalanceFailure());
+      })
+    }
 
 
 

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 import UserTransactionQuery from './UserTransactionQuery';
 import CreateInvoice from './CreateInvoice';
-import { getWeb3Authentication } from '../../utils/Web3Utils';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { isNonEmptyArray } from '../../utils/ObjectUtils';
 import { checkIfPaymentStatusUpdate } from '../../utils/ObjectUtils';
 import UserInvoiceList from './UserInvoiceList';
 import TransactionStatusContainer from '../transaction/TransactionStatusContainer';
+import './user.css';
 
 export default class UserView extends Component {
   constructor(props) {
@@ -15,7 +15,6 @@ export default class UserView extends Component {
     this.state = { dialogVisible: false, pendingTransactions: [] };
   }
   componentWillMount() {
-    getWeb3Authentication();
     this.props.getPreviousInvoices();
 
     this.listenForInvoicePayments();
@@ -74,9 +73,9 @@ export default class UserView extends Component {
       
       {pendingTransactionList}
       <CreateInvoice dialogVisible={dialogVisible} handleCloseDialog={this.handleCloseDialog} submitInvoice={this.props.submitInvoice}/>
-      <Row>
+      <Row className="add-invoice-btn-row">
         <Col lg={3}>
-        <Button onClick={this.showDialog}>Create New Invoice</Button>
+        <Button onClick={this.showDialog} className="add-invoice-btn">Create New Invoice</Button>
         </Col>
         <Col lg={9}>
         

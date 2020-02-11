@@ -1,0 +1,83 @@
+
+.home-page-container {
+.top-info-container {
+    background: #1438A6;
+    color: #f5f5f5;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 16px 26px;
+    .invoice-snapshot-row {
+      text-align: left;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .invoice-btn {
+  width: 100%;
+  font-size: 12px !important;
+  padding-left: 6px !important;
+    }
+}
+
+.left-label-container {
+  text-align: left;
+}
+
+.list-group {
+  border:2px solid #0D1440 !important;
+}
+
+.invoice-label {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.invoice-description-container {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.invoice-description-label {
+    text-align: left;
+}
+
+.cell-label {
+    font-weight: 600;
+  font-size: 11px;
+}
+.cell-data {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+ .identifier-container {
+     text-align: left;
+  padding-left: 10px;
+ }
+ .mining-block-container {
+        text-align: left;
+ }
+ .value-label {
+    text-align: left;
+    padding-left: 0px;
+ }
+ .value-container {
+   text-align: left;
+   padding-left: 10px;
+ }
+ 
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+   background: #0D1440 !important;
+   color: #f5f5f5;
+   border: none !important;
+ }
+ .invoice-table-header {
+   text-align: left;
+   margin-top: 12px;
+   margin-bottom: 6px;
+ }
+ .list-group {
+   margin-bottom: 40px;
+ }
+}

@@ -8,10 +8,11 @@ export default class InvoicesList extends Component {
   render() {
     const { invoices } = this.props;
     const self = this;
+
     return (
       <div>
-       <ListGroup>
-        <ListGroupItem>
+       <ListGroup className="manager-invoice-list">
+        <ListGroupItem className="list-table-header">
           <Row>
             <Col lg={3}>
               From
@@ -32,8 +33,14 @@ export default class InvoicesList extends Component {
           </Row>
         </ListGroupItem>
               <div>
-          {invoices.map((transaction, index) => (
-          <ListGroupItem className='transaction' key={`txn-${index}`}>    
+          {invoices.map((transaction, index) => {
+          let actionButton = <span/>;
+          if (transaction.status === 'paid') {
+            actionButton = <Button className="manager-invoice-btn" onClick={self.payInvoice.bind(self, transaction)}>Reciept</Button>
+          } else {
+             actionButton = <Button className="manager-invoice-btn" onClick={self.payInvoice.bind(self, transaction)}>Pay</Button>
+          }
+         return <ListGroupItem className='transaction' key={`txn-${index}`}>    
               <Row>
 
                 <Col lg={3}>
@@ -49,11 +56,11 @@ export default class InvoicesList extends Component {
                 {transaction.status}
                 </Col>
                 <Col lg={1}>
-                  <Button onClick={self.payInvoice.bind(self, transaction)}>Pay</Button>
+                  {actionButton}
                 </Col>
               </Row>
           </ListGroupItem>    
-              ))}
+              })}
       
       </div>
       </ListGroup>     

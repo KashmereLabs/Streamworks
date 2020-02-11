@@ -10,7 +10,10 @@ import {
   GET_PREVIOUS_INVOICES_SUCCESS,
   GET_USER_INFO,
   GET_USER_INFO_SUCCESS,
-  GET_USER_INFO_FAILURE
+  GET_USER_INFO_FAILURE,
+  GET_WALLET_ETH_BALANCE,
+  GET_WALLET_ETH_BALANCE_SUCCESS,
+  GET_WALLET_ETH_BALANCE_FAILURE,
 }
 from '../actions/user';
 
@@ -21,7 +24,8 @@ const initialState = {
   isFetching: false,
   error: false,
   success: false,
-  userInfo: []
+  userInfo: [],
+  balance: '',
 }
 
 export default function userReducer(state = initialState, action) {
@@ -46,6 +50,8 @@ export default function userReducer(state = initialState, action) {
       return { ...state, userInfo: action.payload.data }
     case GET_USER_INFO_FAILURE:
       return { ...state }
+    case GET_WALLET_ETH_BALANCE_SUCCESS:
+      return { ...state, balance: action.payload }
     default:
       return state
   }

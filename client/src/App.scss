@@ -47,6 +47,9 @@
   font-weight: 500;
 }
 
+.list-group {
+  margin-bottom: 20px;
+}
 .list-group-item {
   background-color: #0E2773 !important;
   border: none !important;
@@ -55,7 +58,27 @@
   color: #fff;
 }
 
+.list-table-header {
+  background: #0D1440 !important;  
+}
+
 button {
   background-color:#BF1736 !important;
+  border: none !important;
+}
+
+.manager-invoice-list {
+  margin-top: 20px;
+}
+
+.manager-invoice-btn {
+  width: 100%;
+  font-size: 14px !important;
+  padding-left: 6px !important;
+}
+
+.nav-item nav-link active {
+  background: #0D1440;
+  color: #f5f5f5;
   border: none !important;
 }

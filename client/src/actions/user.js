@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { searchWalletHistory } from '../utils/DfuseUtils';
+import { getEthBalance } from '../utils/Web3Utils';
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 
@@ -18,6 +19,10 @@ export const GET_PREVIOUS_INVOICES_FAILURE = 'GET_PREVIOUS_INVOICES_FAILURE';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
 export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
+
+export const GET_WALLET_ETH_BALANCE = 'GET_WALLET_ETH_BALANCE';
+export const GET_WALLET_ETH_BALANCE_SUCCESS = 'GET_WALLET_ETH_BALANCE_SUCCESS';
+export const GET_WALLET_ETH_BALANCE_FAILURE = 'GET_WALLET_ETH_BALANCE_FAILURE';
 
 export function submitInvoice(payload) {
   const request = axios.post(`${API_SERVER}/user/invoice`, payload);
@@ -107,6 +112,28 @@ export function getUserInfoSuccess(response) {
 export function getUserInfoFailure(err) {
   return {
     type: GET_USER_INFO_FAILURE,
+    payload: err
+  }
+}
+
+export function getWalletEthBalance() {
+  const request = getEthBalance();
+  return {
+    type: GET_WALLET_ETH_BALANCE,
+    payload: request
+  }
+}
+
+export function getWalletEthBalanceSuccess(response) {
+  return {
+    type: GET_WALLET_ETH_BALANCE_SUCCESS,
+    payload: response
+  }
+}
+
+export function getWalletEthBalanceFailure(err) {
+  return {
+    type: GET_WALLET_ETH_BALANCE_FAILURE,
     payload: err
   }
 }

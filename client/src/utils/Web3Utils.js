@@ -28,6 +28,23 @@ module.exports = {
     });
   },
 
+  getEthBalance: function() {
+    const web3 = window.web3;
+    const address = window.ethereum.selectedAddress;
+
+    return new Promise((resolve, reject) => {
+      web3.eth.getBalance(address, function(error, wei) {
+        if (!error) {
+          var balance = web3.utils.fromWei(wei, 'ether');
+          resolve(balance);
+        }
+        else {
+          reject(error);
+        }
+      });
+    })
+  },
+
   makePaymentTransaction: function(transaction) {
     const web3 = window.web3;
     const amountString = web3.utils.toWei(transaction.amount.toString());
@@ -48,16 +65,4 @@ module.exports = {
     });
 
   },
-
-  getAccountDetails: function() {
-    const web3 = window.web3;
-
-    //  let accountBalance = web3.utils.fromWei(web3.eth.getBalance(web3.eth.coinbase));
-    // let balance = web3.eth.getBalance(web3.eth.coinbase);
-    //console.log(balance);
-    return { address: '', balance: '' };
-  },
-  web3Authenticate: function() {
-    console.log("HERE")
-  }
 }

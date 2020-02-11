@@ -134,7 +134,7 @@ module.exports = {
           searchTransactions(indexName:CALLS query: "${query}", limit: 10, sort: DESC) {
             edges { 
             node {
-      value(encoding:WEI)
+      value(encoding:ETHER)
       hash
       nonce
       gasLimit
@@ -168,12 +168,6 @@ module.exports = {
           reason
           address
           oldValue(encoding:WEI)
-          newValue
-        }
-        storageChanges{
-          key
-          address
-          oldValue
           newValue
         }
       }

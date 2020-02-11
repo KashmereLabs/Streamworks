@@ -26,6 +26,25 @@ export default class UserInvoiceList extends Component {
     return (
       <div>
         <ListGroup>
+          <ListGroupItem className="list-table-header">
+          <Row>
+            <Col lg={2}>
+              Identifier
+            </Col>
+            <Col lg={2}>
+              Amount
+            </Col>
+            <Col lg={2}>
+              Description
+            </Col>
+            <Col lg={2}>
+              Invoice Status
+            </Col>
+            <Col lg={2}>
+              Transaction Status
+            </Col>
+            </Row>
+          </ListGroupItem>
           {invoices}
         </ListGroup>
       </div>
