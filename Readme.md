@@ -1,7 +1,7 @@
 # Streamworks
 
 ### Send and recieve ethereum invoices and reconcile payments with the blockchain.
-This app if a proof of concept for a system that lets contractors send invoices to a specified approver/manager account and managers fullfill those invoices.
+This app is a proof of concept for a system that lets contractors send invoices to a specified approver/manager account and managers fullfill those invoices.
 Furthermore it lets both parties track and audit the transactions in real-time.
 
 ### This app uses DFuse library to reconcile invoice payment with blockchain data.
