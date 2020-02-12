@@ -53,9 +53,9 @@ export default class UserInvoiceList extends Component {
           </Col>
 
           <Col lg={2}>
-                      <div> 
+            <div> 
               <div className="cell-data">
-            <a href={`${ETHQ_ENDPOINT}/search?q=(from:${item.transaction_hash}%20OR%20to:${item.transaction_hash})`} target="_blank">{transactionHash}</a>
+            <a href={`${ETHQ_ENDPOINT}/tx/${item.transaction_hash}`} target="_blank">{transactionHash}</a>
               </div>
               <div className="cell-label">
                 Transaction Hash

@@ -1,12 +1,14 @@
 const { createDfuseClient, waitFor } = require("@dfuse/client")
 
-const client = createDfuseClient({
-    apiKey: 'web_ba3560eac90ff4f5ad36f68d1926ec30',
-    network: 'ropsten.eth.dfuse.io'
-});
+
 
 module.exports = {
     getTransactionStatusQuery(txId) {
+        const client = createDfuseClient({
+            apiKey: process.env.REACT_APP_DFUSE_API_KEY,
+            network: process.env.REACT_APP_DFUSE_NETWORK
+        });
+
         const txHashString = `hash: "${txId}"`;
 
         const txQuery = `subscription {
@@ -124,6 +126,10 @@ module.exports = {
     },
 
     searchWalletHistory: function(walletAddress, type) {
+        const client = createDfuseClient({
+            apiKey: process.env.REACT_APP_DFUSE_API_KEY,
+            network: process.env.REACT_APP_DFUSE_NETWORK
+        });
 
         if (!type) {
             type = 'from'

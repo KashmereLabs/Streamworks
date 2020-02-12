@@ -18,8 +18,8 @@ export default class TransactionStatus extends Component {
     const { transaction_hash } = this.props;
 
     const client = createDfuseClient({
-      apiKey: 'web_ba3560eac90ff4f5ad36f68d1926ec30',
-      network: 'ropsten.eth.dfuse.io'
+      apiKey: process.env.REACT_APP_DFUSE_API_KEY,
+      network: process.env.REACT_APP_DFUSE_NETWORK
     });
 
     const self = this;

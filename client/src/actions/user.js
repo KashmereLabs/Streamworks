@@ -52,6 +52,7 @@ export function submitInvoiceFailure(err) {
 
 export function getWalletHistory(type) {
   const walletAddress = window.ethereum.selectedAddress;
+
   const request = searchWalletHistory(walletAddress, type);
   return {
     type: GET_WALLET_HISTORY,

@@ -8,14 +8,16 @@ export default class CreateInvoice extends Component {
     this.state = { address: '', pay: 0, type: '', hours: 0, perHour: true, perProject: false, label: '', description: '' };
   }
   submitInvoice = () => {
-    const { address, pay, type, hours, label, description } = this.state;
+    const { address, pay, type, hours, label, description, perHour } = this.state;
     let amount = 0;
-    if (type === 'hourly') {
+
+    if (perHour) {
       amount = pay * hours;
     }
     else {
       amount = pay;
     }
+
     const sender_address = window.ethereum.selectedAddress;
 
     const payload = {

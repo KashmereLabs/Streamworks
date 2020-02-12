@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import UserTransactionQuery from './UserTransactionQuery';
 import CreateInvoice from './CreateInvoice';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { isNonEmptyArray } from '../../utils/ObjectUtils';
@@ -20,9 +19,7 @@ export default class UserView extends Component {
     this.listenForInvoicePayments();
   }
 
-  submitInvoice(payload) {
 
-  }
 
   listenForInvoicePayments = () => {
     const self = this;
@@ -34,7 +31,6 @@ export default class UserView extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
   componentWillReceiveProps(nextProps) {
     const { user: { previousInvoices } } = nextProps;
 
@@ -66,6 +62,14 @@ export default class UserView extends Component {
           return <TransactionStatus key={`${item}+${idx}`} transaction_hash={item}/>;
         });
     }
+
+    let invoiceList = <span/>;
+    if (user.previousInvoices.length > 0) {
+      invoiceList = <UserInvoiceList previousInvoices={user.previousInvoices}/>;
+    }
+    else {
+      invoiceList = <div className="empty-list-container empty-user-list">You haven't created any invoices yet.</div>
+    }
     return (
       <Container>
       
@@ -81,7 +85,7 @@ export default class UserView extends Component {
       </Row>
       <Row> 
         <Col lg={12}>
-          <UserInvoiceList previousInvoices={user.previousInvoices}/>
+          {invoiceList}
         </Col>
       </Row>
       </Container>

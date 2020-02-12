@@ -8,14 +8,21 @@ import './manager.scss';
 export default class ManagerView extends Component {
   componentWillMount() {
     this.props.listInvoices();
+    this.listenForInvoicePayments();
   }
-  componentWillReceiveProps(nextProps) {
-    const { transaction: { pendingTransactionID } } = nextProps;
-    const self = this;
-    if (pendingTransactionID && pendingTransactionID !== this.props.transaction.pendingTransactionID) {
 
-    }
+
+  listenForInvoicePayments = () => {
+    const self = this;
+    this.timer = setInterval(function() {
+      self.props.listInvoices();
+    }, 4000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
 
   render() {
     const { manager, transaction } = this.props;
@@ -24,10 +31,17 @@ export default class ManagerView extends Component {
     if (transaction.pendingTransactionID && transaction.pendingTransactionID.length > 0) {
       currentTransactionStatus = <TransactionStatus transaction_hash={transaction.pendingTransactionID}/>
     }
+    let invoiceList = <span/>;
+    if (manager.invoices.length > 0) {
+      invoiceList = <InvoicesList invoices={manager.invoices} payInvoice={this.props.payInvoice}/>
+    }
+    else {
+      invoiceList = <div className="empty-list-container">Looks like you haven't recieved any invoices yet.</div>
+    }
     return (
       <Container>
         {currentTransactionStatus}
-        <InvoicesList invoices={manager.invoices} payInvoice={this.props.payInvoice}/>
+        {invoiceList}
     </Container>
     )
   }

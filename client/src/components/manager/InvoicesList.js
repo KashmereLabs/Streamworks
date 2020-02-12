@@ -37,7 +37,10 @@ export default class InvoicesList extends Component {
           {invoices.map((transaction, index) => {
           let actionButton = <span/>;
           if (transaction.status === 'paid') {
-            actionButton = <Button className="manager-invoice-btn" onClick={self.payInvoice.bind(self, transaction)}>Reciept</Button>
+            actionButton = 
+            <a href={`${ETHQ_ENDPOINT}/tx/${transaction.transaction_hash}`} target="_blank">
+            <Button className="manager-invoice-btn secondary-btn">Reciept</Button>
+            </a>
           } else {
              actionButton = <Button className="manager-invoice-btn" onClick={self.payInvoice.bind(self, transaction)}>Pay</Button>
           }

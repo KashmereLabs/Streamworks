@@ -24,7 +24,6 @@ export default class HomeView extends Component {
   }
   render() {
     const { user: { walletHistory, userInfo, balance } } = this.props;
-    let walletBalance = "-";
 
     let numOfInvoicesSent = 0;
     let numOfInvoicesReceived = 0;
@@ -50,8 +49,7 @@ export default class HomeView extends Component {
     }
 
     let transactionList = <span/>;
-    console.log(walletHistory);
-    
+
     if (walletHistory.length > 0) {
       transactionList = walletHistory.map(function(data, idx) {
         let dataNode = data.node;
@@ -156,7 +154,7 @@ export default class HomeView extends Component {
               </Col>
               <Col lg={2}>
                <Link to="/user">
-               <Button className="invoice-btn">View Sent Invoices</Button>
+               <Button className="invoice-btn secondary-btn">View Sent Invoices</Button>
                </Link>
               </Col>
           </Row>
@@ -176,7 +174,7 @@ export default class HomeView extends Component {
               </Col>
               <Col lg={2}>
                 <Link to="/manager">
-                  <Button className="invoice-btn">View Recieved Invoices</Button></Link>
+                  <Button className="invoice-btn secondary-btn">View Recieved Invoices</Button></Link>
               </Col>
           </Row>
           </div>

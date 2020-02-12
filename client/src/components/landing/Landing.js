@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Grid, Row, Col, Button } from 'react-bootstrap';
-import { createDfuseClient } from '@dfuse/client';
 import LoginPage from './LoginPage';
 
 
@@ -46,7 +45,7 @@ export default class Landing extends Component {
 
       }
     });
-    
+
 
     if (web3 && web3.utils) {
       let walletAddress = window.ethereum.selectedAddress;
@@ -58,11 +57,11 @@ export default class Landing extends Component {
         else {
           let balance = web3.utils.fromWei(result, 'ether');
           let walletBalance = balance;
-       //   self.props.setUserWallet({'address': walletAddress, balance: balance});
+          //   self.props.setUserWallet({'address': walletAddress, balance: balance});
         }
       })
     }
-    
+
   }
   render() {
     let currentViewPage = <span/>;
