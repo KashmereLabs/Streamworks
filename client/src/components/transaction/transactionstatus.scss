@@ -1,8 +1,10 @@
 .stepper-circle {
-  width:45px;
-  height: 45px;
-  border-radius: 50%;
-  background: yellow;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: yellow;
+    font-size: 18px;
+    font-weight: 600;
   
 }
 
@@ -13,13 +15,60 @@
 .stepper-line {
     display: inline-block;
     width: 80px;
-    background: green;
-    height: 10px;
-    margin-bottom: 15px;
+    background: #d3d3d3;
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 28px;
+    margin-left: -35px;
+    margin-right: 10px;
 } 
 
 
 .progress-bar-container {
-  background: blue;
-  height: 120px;
+  position: relative;
+  padding-bottom:20px;
+  display: block;
+}
+
+.status-cell-meta {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+.cell-container {
+  display: inline-block;
+  width: 30%;
+}
+
+.current-status-stepper {
+  width: 100%;
+  display: block;
+  position: relative;
+  .status-line {
+    width: 30%;
+    display: inline-block;
+  }
+  .status-step {
+    width: 68%;
+    display: inline-block;
+  }
+}
+
+.step-header-container {
+  background: #1438A6;
+  color: #f5f5f5;
+  position: relative;
+}
+
+.hide-container-check {
+      position: absolute;
+    top: 0px;
+    right: 4px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.status-cell-meta {
+
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createDfuseClient } from "@dfuse/client"
 import { getTransactionStatusQuery } from '../../utils/DfuseUtils';
 import './transactionstatus.scss';
+const ETHQ_ENDPOINT = process.env.REACT_APP_ETHQ_ENDPOINT;
 
 export default class TransactionStatus extends Component {
   constructor(props) {
@@ -24,14 +25,12 @@ export default class TransactionStatus extends Component {
     const self = this;
 
     async function subscribeUpdate(txId, self) {
-      console.log(txId);
-
       const txQuery = getTransactionStatusQuery(txId);
       const stream = await client.graphql(txQuery, (message) => {
         if (message.type === "data") {
           let currentTransactionSteps = self.state.transactionSteps;
           currentTransactionSteps.push(message.data.transactionLifecycle);
-          console.log(currentTransactionSteps);
+
           self.setState({ transactionSteps: currentTransactionSteps });
 
           if (message.data.transactionLifecycle.transitionName === 'CONFIRMED') {
@@ -54,13 +53,15 @@ export default class TransactionStatus extends Component {
     let styles = {
       containerStyle: {
         'background': '#f5f5f5',
-        'height': '200px',
+        'marginTop': '20px',
       }
     }
-    let transactionFromAddress = <span/>;
-    let transactionToAddress = <span/>;
+    let transactionFromAddress = "";
+    let transactionToAddress = "";
     let transactionEtherValue = <span/>;
     let currentStep = <span/>;
+    let transactionFromDisplay = <span/>;
+    let transactionToDisplay = <span/>;
 
     if (transactionSteps.length > 0) {
       let lastTransition = transactionSteps[transactionSteps.length - 1];
@@ -87,74 +88,111 @@ export default class TransactionStatus extends Component {
         transactionFromAddress = firstStep.transition.transaction.from;
         transactionToAddress = firstStep.transition.transaction.to;
         transactionEtherValue = firstStep.transition.transaction.value;
+
+        transactionFromDisplay = transactionFromAddress.substr(0, 5) + "...." + transactionFromAddress.substr(transactionFromAddress.length - 6, transactionFromAddress.length - 1);
+        transactionFromDisplay = <a href={`${ETHQ_ENDPOINT}/tx/${transactionFromAddress}`} target="_blank">{transactionFromDisplay}</a>;
+
+        transactionToDisplay = transactionToAddress.substr(0, 5) + "...." + transactionToAddress.substr(transactionToAddress.length - 6, transactionToAddress.length - 1);
+        transactionToDisplay = <a href={`${ETHQ_ENDPOINT}/tx/${transactionToAddress}`} target="_blank">{transactionToDisplay}</a>;
+
       }
     }
 
-    let pendingTransactionSteps = (
-      <div className="progress-bar-container">
-        {transactionSteps.map(function(item, idx){
-        let stepperStep = idx + 1;
-        if (item.previousState !== item.currentState) {
-          return (
-          <div key={"tx-confirmation-"+idx}>
-            <div className="stepper-circle-container">
-            <div className="stepper-circle stepper-left">
-              {stepperStep}
-            </div>
-             {item.previousState}
-            </div>
-            <div className="stepper-line"></div>
-            <div className="stepper-circle-container">
-              <div className="stepper-circle stepper-right">
-                {stepperStep + 1}
-              </div>
-              { item.currentState }
-            </div>
-          </div>
-          )
-        } else {
-          return <span/>;
+    let steps = [];
+    transactionSteps.forEach(function(item, idx) {
+      if (idx === 0) {
+        let currentStepList = [{ 'label': item.previousState }]
+
+        if (item.currentState !== item.previousState) {
+          currentStepList.push({ 'label': item.currentState })
         }
+        steps = steps.concat(currentStepList);
+      }
+      else {
+        let currentStepList = [];
+        if (item.previousState !== transactionSteps[idx - 1].currentState) {
+          currentStepList.push({ 'label': item.previousState })
+        }
+        if (item.currentState !== item.previousState) {
+          currentStepList.push({ 'label': item.currentState })
+        }
+        steps = steps.concat(currentStepList);
+      }
+    });
+
+    let pendingTransactionSteps = (
+
+
+      <div className="progress-bar-container">
+        {steps.map(function(item, idx){
+        let stepperStep = idx + 1;
+        let joiner = <span/>;
+        if (idx < steps.length - 1) {
+          joiner =  <div className="stepper-line"></div>
+        }
+        return (
+          <span>
+              <div className="stepper-circle-container" key={"tx-confirmation-"+idx}>
+                <div className="stepper-circle stepper-left">
+                  {stepperStep}
+                </div>
+                {item.label}
+              </div>
+              {joiner}
+          </span>
+        )
         })}
-      </div>
+        </div>
+
+
+
     )
     return (
       <div style={styles.containerStyle}>
-        <div>
-          <div>
-          New Transaction recieved
-          <div>
+          
+          <div className="step-header-container">
+            <div>
+              New Transaction received
+            </div>
+            <div className="hide-container-check">&#xd7;</div>
+          </div>
+          <div className="stepper-body-container">
+          <div className="status-cell-meta">
             <div className="cell-container">
               <div className="cell-data">
-                {transactionFromAddress}
+                {transactionFromDisplay}
               </div>
               <div className="cell-label">
                 From
               </div>
-              </div>
-              <div className="cell-container">
+            </div>
+            <div className="cell-container">
               <div className="cell-data">
-                {transactionToAddress}
+                {transactionToDisplay}
               </div>
               <div className="cell-label">
                 To
               </div>
-              </div>
-              <div className="cell-container">
+            </div>
+            <div className="cell-container">
               <div className="cell-data">
-                {transactionEtherValue}
+                {transactionEtherValue} Ether
               </div>
               <div className="cell-label">
-                Ether Value
+                Value
               </div>
-              </div>
-              </div>
+            </div>
+            
           </div>
-          <div>
-          {currentStep}
+          <div className="current-status-stepper">
+            <div className="status-line">
+              {currentStep}
+            </div>
+            <div className="status-step">
+              { pendingTransactionSteps } 
+            </div>
           </div>
-        </div>
-        {pendingTransactionSteps}
+      </div>
       </div>
     )
   }
