@@ -1,33 +1,6 @@
 const Web3 = require('web3');
 
 module.exports = {
-  getWeb3Authentication: function() {
-    const web3 = window.web3;
-    window.addEventListener('load', async() => {
-      // Modern dapp browsers...
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-        try {
-          // Request account access if needed
-          await window.ethereum.enable();
-
-        }
-        catch (error) {
-          // User denied account access...
-        }
-      }
-      // Legacy dapp browsers...
-      else if (window.web3) {
-        window.web3 = new Web3(web3.currentProvider);
-      }
-
-      else {
-
-
-      }
-    });
-  },
-
   getEthBalance: function() {
     const web3 = window.web3;
     const address = window.ethereum.selectedAddress;
@@ -54,7 +27,6 @@ module.exports = {
       to: transaction.sender_address,
       value: amountString,
     };
-
     return new Promise((resolve, reject) => {
       web3.eth.sendTransaction(params, function(err, response) {
         if (err) {
@@ -63,6 +35,6 @@ module.exports = {
         resolve(response);
       })
     });
-
   },
+
 }

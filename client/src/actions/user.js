@@ -143,7 +143,6 @@ export function getWalletEthBalanceFailure(err) {
 }
 
 export function getTransactionListStatus(txnList) {
-  console.log("ggg");
   const request = searchTransactionList(txnList)
   return {
     type: GET_TRANSACTION_LIST_STATUS,
