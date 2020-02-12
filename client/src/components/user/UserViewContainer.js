@@ -5,7 +5,10 @@ import {
   submitInvoiceFailure,
   getPreviousInvoices,
   getPreviousInvoicesSuccess,
-  getPreviousInvoicesFailure
+  getPreviousInvoicesFailure,
+  getTransactionListStatus,
+  getTransactionListStatusSuccess,
+  getTransactionListStatusError
 }
 from '../../actions/user';
 import { connect } from 'react-redux';
@@ -30,7 +33,10 @@ const mapDispatchToProps = (dispatch) => {
 
     getPreviousInvoices: () => {
       dispatch(getPreviousInvoices()).then(function(response) {
-        dispatch(getPreviousInvoicesSuccess(response.payload.data));
+        const previousInvoiceList = response.payload.data;
+
+
+        dispatch(getPreviousInvoicesSuccess(previousInvoiceList));
       }).catch(function(err) {
         dispatch(getPreviousInvoicesFailure(err));
       })

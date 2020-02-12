@@ -50,7 +50,8 @@ export default class HomeView extends Component {
     }
 
     let transactionList = <span/>;
-
+    console.log(walletHistory);
+    
     if (walletHistory.length > 0) {
       transactionList = walletHistory.map(function(data, idx) {
         let dataNode = data.node;
@@ -72,7 +73,7 @@ export default class HomeView extends Component {
         if (dataNode.block.header.timestamp) {
           dateString = moment(parseInt(dataNode.block.header.timestamp, 10)).format("YY-MM-DD HH:mm");
         }
-        let toAddress = dataNode.to.substr(0, 5) + "...." + dataNode.to.substr(dataNode.to.length - 6, dataNode.to.length - 1)
+        let toAddress = dataNode.to.substr(0, 5) + "...." + dataNode.to.substr(dataNode.to.length - 6, dataNode.to.length - 1);
         let txHash = dataNode.hash.substr(0, 5) + "...." + dataNode.to.substr(dataNode.to.length - 6, dataNode.to.length - 1);
         return <ListGroupItem key={`${dataNode.to}-${idx}}`}>
         <Row>

@@ -26,6 +26,7 @@ export default class CreateInvoice extends Component {
       label
     }
     this.props.submitInvoice(payload);
+    this.props.handleCloseDialog();
   }
 
   perHourToggle = (evt) => {

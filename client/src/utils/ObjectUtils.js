@@ -26,9 +26,6 @@ module.exports = {
         pendingTxnList.push(item.transaction_hash);
       }
     });
-
-    console.log(pendingTxnList);
-
     return pendingTxnList;
 
   }

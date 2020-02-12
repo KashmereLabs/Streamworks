@@ -1,0 +1,25 @@
+.stepper-circle {
+  width:45px;
+  height: 45px;
+  border-radius: 50%;
+  background: yellow;
+  
+}
+
+.stepper-circle-container {
+     display: inline-block;
+}
+
+.stepper-line {
+    display: inline-block;
+    width: 80px;
+    background: green;
+    height: 10px;
+    margin-bottom: 15px;
+} 
+
+
+.progress-bar-container {
+  background: blue;
+  height: 120px;
+}

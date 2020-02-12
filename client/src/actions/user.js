@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { searchWalletHistory } from '../utils/DfuseUtils';
+import { searchWalletHistory, searchTransactionList } from '../utils/DfuseUtils';
 import { getEthBalance } from '../utils/Web3Utils';
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
@@ -23,6 +23,10 @@ export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
 export const GET_WALLET_ETH_BALANCE = 'GET_WALLET_ETH_BALANCE';
 export const GET_WALLET_ETH_BALANCE_SUCCESS = 'GET_WALLET_ETH_BALANCE_SUCCESS';
 export const GET_WALLET_ETH_BALANCE_FAILURE = 'GET_WALLET_ETH_BALANCE_FAILURE';
+
+export const GET_TRANSACTION_LIST_STATUS = 'GET_TRANSACTION_LIST_STATUS';
+export const GET_TRANSACTION_LIST_STATUS_SUCCESS = 'GET_TRANSACTION_LIST_STATUS_SUCCESS';
+export const GET_TRANSACTION_LIST_STATUS_FAILURE = 'GET_TRANSACTION_LIST_STATUS_FAILURE';
 
 export function submitInvoice(payload) {
   const request = axios.post(`${API_SERVER}/user/invoice`, payload);
@@ -134,6 +138,29 @@ export function getWalletEthBalanceSuccess(response) {
 export function getWalletEthBalanceFailure(err) {
   return {
     type: GET_WALLET_ETH_BALANCE_FAILURE,
+    payload: err
+  }
+}
+
+export function getTransactionListStatus(txnList) {
+  console.log("ggg");
+  const request = searchTransactionList(txnList)
+  return {
+    type: GET_TRANSACTION_LIST_STATUS,
+    payload: request
+  }
+}
+
+export function getTransactionListStatusSuccess(response) {
+  return {
+    type: GET_TRANSACTION_LIST_STATUS_SUCCESS,
+    payload: response
+  }
+}
+
+export function getTransactionListStatusError(err) {
+  return {
+    type: GET_TRANSACTION_LIST_STATUS_FAILURE,
     payload: err
   }
 }

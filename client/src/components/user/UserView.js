@@ -6,8 +6,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { isNonEmptyArray } from '../../utils/ObjectUtils';
 import { checkIfPaymentStatusUpdate } from '../../utils/ObjectUtils';
 import UserInvoiceList from './UserInvoiceList';
-import TransactionStatusContainer from '../transaction/TransactionStatusContainer';
-import './user.css';
+import TransactionStatus from '../transaction/TransactionStatus';
+import './user.scss';
 
 export default class UserView extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class UserView extends Component {
     const self = this;
     this.timer = setInterval(function() {
       self.props.getPreviousInvoices();
-    }, 2000);
+    }, 4000);
   }
 
   componentWillUnmount() {
@@ -61,11 +61,9 @@ export default class UserView extends Component {
     const { user } = this.props;
     let pendingTransactionList = <span/>;
     if (isNonEmptyArray(pendingTransactions)) {
-
       pendingTransactionList =
-
         pendingTransactions.map(function(item, idx) {
-          return <TransactionStatusContainer key={`${item}+${idx}`} transaction_hash={item}/>;
+          return <TransactionStatus key={`${item}+${idx}`} transaction_hash={item}/>;
         });
     }
     return (

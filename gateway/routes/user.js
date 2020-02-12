@@ -9,7 +9,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/invoice', function(req, res) {
   const { address, type, } = req.body;
-  var Invoice = new invoice(req.body);
+  let requestBody = req.body;
+  requestBody.date_created = new Date();
+  var Invoice = new invoice(requestBody);
   Invoice.save({}).then(function(dataResponse) {
     res.send({ "message": "success" });
   });

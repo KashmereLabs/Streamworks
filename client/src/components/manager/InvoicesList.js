@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+const ETHQ_ENDPOINT = process.env.REACT_APP_ETHQ_ENDPOINT;
+
 export default class InvoicesList extends Component {
   payInvoice(transaction) {
     this.props.payInvoice(transaction);
@@ -20,7 +22,7 @@ export default class InvoicesList extends Component {
             <Col lg={2}>
               Amount
             </Col>
-            <Col lg={3}>
+            <Col lg={3} className="transaction-detail-header">
               Details
             </Col>
             <Col lg={2}>
@@ -29,7 +31,6 @@ export default class InvoicesList extends Component {
             <Col lg={1}>
               Action
             </Col>
-            
           </Row>
         </ListGroupItem>
               <div>
@@ -49,7 +50,7 @@ export default class InvoicesList extends Component {
                 <Col lg={2}>
                 {transaction.amount}
                 </Col>
-                <Col lg={2}>
+                <Col lg={2} className="transaction-detail-cell">
                   <TransactionDetails transaction={transaction} key={`description-key-${index}`}/>
                 </Col>
                 <Col lg={3}>
@@ -74,8 +75,18 @@ class TransactionDetails extends Component {
     const { transaction } = this.props;
     return (
       <div>
-        <div>{transaction.label}</div>
-        <div>{transaction.description}</div>
+        <div className="cell-data">
+          {transaction.label}
+        </div>
+        <div className="cell-label">
+          Label
+        </div>
+        <div className="cell-data">
+          {transaction.description}
+        </div>
+        <div className="cell-label">
+          Description
+        </div>
       </div>
     )
   }
@@ -84,9 +95,19 @@ class TransactionDetails extends Component {
 class TransactioniIdentifier extends Component {
   render() {
     const { transaction } = this.props;
+    let senderAddress = transaction.sender_address ?
+      transaction.sender_address.substr(0, 5) + "...." + transaction.sender_address.substr(transaction.sender_address.length - 6, transaction.sender_address.length - 1) :
+      "";
+    let senderAddressLink = "";
+    if (senderAddress) {
+      senderAddressLink = <a href={`${ETHQ_ENDPOINT}/search?q=(from:${transaction.sender_address}%20OR%20to:${transaction.sender_address})`} target="_blank">{senderAddress}</a>;
+    }
+
     return (
       <div>
-        <div className="address-black">{transaction.sender_address}</div>
+        <div>
+          {senderAddressLink}
+        </div>
       </div>
     )
   }
