@@ -18,6 +18,21 @@ This is achieved through DFuse search GraphQL endpoints which is used to query "
 
 ### Demo website can be found [here](http://streamworks-ethereum.s3-website-us-west-2.amazonaws.com/)
 
+You need to have Metamask installed on your browser in order to run the demo. Metamask can be obtained [here](https://metamask.io/)
+
+Switch metamask to Ropsten testnet from Ethereum mainnet.
+
+Now open two different browser windows to simulate the worker/manager interaction and login via different metamask accounts.
+
+One window will simulate a contractor user which will be used to create invoices.
+
+The other will simulate a manager user which will fullfill the invoices. Note that you need some testnet ether to fullfill the invoices. You can obtain some [here](https://faucet.ropsten.be/).
+
+Once the contractor user creates an invoice it will appear on the manager users 'manager' tab. They can pay the invoice by clicking on the pay button which will open a Metamask popup. 
+
+Once the invoice has been paid both the contractor and the manager can track the transaction in real-time using the transaction progress-bar that will appear on the top of both users' windows.
+
+Both types of users can audit the invoices sent and payments made in real time by navigating to the tabs belonging to the respective roles.
 
 ## Screenshots
 
