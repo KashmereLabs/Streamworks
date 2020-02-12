@@ -1,8 +1,20 @@
 # Streamworks
 
 ### Send and recieve ethereum invoices and reconcile payments with the blockchain.
+This app if a proof of concept for a system that lets contractors send invoices to a specified approver/manager account and managers fullfill those invoices.
+Furthermore it lets both parties track and audit the transactions in real-time.
 
 ### This app uses DFuse library to reconcile invoice payment with blockchain data.
+Dfuse is a set of APIs, Socket and GraphQL endpoints that lets you perform deep introspection of the blockchain and query transactions and accounts in real-time.
+
+DFuse is used in the following specific scenarios on this app.
+
+1. Reconcile the app state and invoice data with the Ethereum blockchain data in real-time thus providing a user with a unified view of the app-state and the blockchain state.
+This is achieved through DFuse search GraphQL endpoints which is used to query "to: {address}" and "from: {address}" to track transactions originating from and to a given wallet address.
+
+2. Allow user to track invoice payments made and recieved in real-time through a progress-bar style transaction life-cycle view. This is done through a custom component that 
+ wraps over the transaction lifecycle subsription.
+
 
 ### Demo website can be found [here](http://streamworks-ethereum.s3-website-us-west-2.amazonaws.com/)
 
@@ -29,9 +41,6 @@ Login to the app via Metamask using two different wallet addresses.
 
 You need to have some Ropsten Ether to test the app. You can obtain some for your app [here](https://faucet.ropsten.be/).
 One of them will act as a Manager and the other Contractor.
-
-
-
 
 ## Installation
 This repo consists of two projects
