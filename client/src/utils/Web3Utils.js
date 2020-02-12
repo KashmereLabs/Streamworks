@@ -6,6 +6,9 @@ module.exports = {
     const address = window.ethereum.selectedAddress;
 
     return new Promise((resolve, reject) => {
+      if (!web3.utils) {
+        reject();
+      }
       web3.eth.getBalance(address, function(error, wei) {
         if (!error) {
           var balance = web3.utils.fromWei(wei, 'ether');

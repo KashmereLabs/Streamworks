@@ -7,7 +7,7 @@ const ETHQ_ENDPOINT = process.env.REACT_APP_ETHQ_ENDPOINT;
 export default class TransactionStatus extends Component {
   constructor(props) {
     super(props);
-    this.state = { walletAddress: '', transactionSteps: [] };
+    this.state = { walletAddress: '', transactionSteps: [], containerVisibleToggle: 'display: block' };
   }
   componentWillMount() {
     const { walletAddress, dfuseApiKey } = this.props;
@@ -47,6 +47,9 @@ export default class TransactionStatus extends Component {
 
   }
 
+  hideOuterContainer = () => {
+    console.log("hide container");
+  }
   render() {
     const { transactionSteps } = this.state;
 
@@ -148,13 +151,16 @@ export default class TransactionStatus extends Component {
 
     )
     return (
+      <div className="pending-transaction-outer-container">
+      
+      <div>
       <div style={styles.containerStyle}>
           
           <div className="step-header-container">
             <div>
               New Transaction received
             </div>
-            <div className="hide-container-check">&#xd7;</div>
+            <div className="hide-container-check" onClick={this.hideOuterContainer}>&#xd7;</div>
           </div>
           <div className="stepper-body-container">
           <div className="status-cell-meta">
@@ -192,6 +198,8 @@ export default class TransactionStatus extends Component {
               { pendingTransactionSteps } 
             </div>
           </div>
+      </div>
+      </div>
       </div>
       </div>
     )

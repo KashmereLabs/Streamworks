@@ -8,8 +8,15 @@ const ETHQ_ENDPOINT = process.env.REACT_APP_ETHQ_ENDPOINT;
 
 export default class HomeView extends Component {
   componentWillMount() {
-    this.props.getWalletHistory("to");
+    this.state = { 'toggle': 'to' };
+    this.props.getWalletHistory(this.state.toggle);
     this.props.getUserInfo();
+    const self = this;
+
+    window.ethereum.on('accountsChanged', function(accounts) {
+      self.props.getWalletEthBalance();
+      self.props.getWalletHistory(self.state.toggle);
+    })
   }
 
   componentDidMount() {
@@ -20,6 +27,7 @@ export default class HomeView extends Component {
   }
 
   homeTabToggle = (toggle) => {
+    this.setState({ toggle: toggle });
     this.props.getWalletHistory(toggle);
   }
   render() {
@@ -183,7 +191,7 @@ export default class HomeView extends Component {
             <div className="h4">Latest Invoice Payments</div>
             </Col>
           </Row>
-          <Tabs defaultActiveKey="from" id="home-view-tab" onSelect={this.homeTabToggle}>
+          <Tabs defaultActiveKey="to" id="home-view-tab" onSelect={this.homeTabToggle}>
             <Tab eventKey="to" title="Recieved">
               <ListGroup>
                 <ListGroupItem className="list-table-header"> 

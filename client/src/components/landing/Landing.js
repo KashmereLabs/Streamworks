@@ -46,7 +46,6 @@ export default class Landing extends Component {
       }
     });
 
-
     if (web3 && web3.utils) {
       let walletAddress = window.ethereum.selectedAddress;
       web3.eth.getBalance(walletAddress, function(error, result) {
