@@ -1,8 +1,8 @@
 # Streamworks
 
-## Send and recieve ethereum invoices and reconcile payments with the blockchain.
+### Send and recieve ethereum invoices and reconcile payments with the blockchain.
 
-## This app uses DFuse library to reconcile invoice payment with blockchain data.
+### This app uses DFuse library to reconcile invoice payment with blockchain data.
 
 ### Demo website can be found [here](http://streamworks-ethereum.s3-website-us-west-2.amazonaws.com/)
 
