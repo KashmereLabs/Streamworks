@@ -11,6 +11,13 @@
 
 ![Create and list invoices](https://github.com/KashmereLabs/Streamworks/blob/master/screenshots/create_list_sent_invoices.png "Create and list invoices")
 
+![Create and list invoices](https://github.com/KashmereLabs/Streamworks/blob/master/screenshots/pending_txn_lifecycle.png "Create and list invoices")
+
+![Create and list invoices](https://github.com/KashmereLabs/Streamworks/blob/master/screenshots/manager_view_pay_invoice.png "Create and list invoices")
+
+![Create and list invoices](https://github.com/KashmereLabs/Streamworks/blob/master/screenshots/create_new_invoice.png "Create and list invoices")
+
+
 ## Running the demo
 The uses Metamask web3 authentication.
 
