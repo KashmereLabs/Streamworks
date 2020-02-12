@@ -1,5 +1,7 @@
 client/node_modules/
 gateway/node_modules
 client/build
-client/env
-gateway/env
+client/.env
+gateway/.env
+client/.env.development
+gateway/.env.development

@@ -19,7 +19,7 @@ router.post('/invoice', function(req, res) {
 
 router.get('/invoices', function(req, res) {
   const { address } = req.query;
-  invoice.find({ 'sender_address': address.toLowerCase() }).then(function(dataResponse) {
+  invoice.find({ 'sender_address': address.toLowerCase() }).sort({ date_created: -1 }).then(function(dataResponse) {
     res.send({ "message": "success", data: dataResponse });
   });
 });

@@ -37,16 +37,23 @@ One of them will act as a Manager and the other Contractor.
 This repo consists of two projects
 
 The client app is a React app.
+You need a DFuse API Key
 
 Set the environment varaibles
+```
+REACT_APP_API_SERVER=
+REACT_APP_ETHQ_ENDPOINT=
+DFUSE_API_KEY=
+DFUSE_NETWORK=
+```
 
-You need a DFuse API Key
 
 
 ```
 sudo npm install
 npm start
 ```
+
 
 To gateway is an Express/NodeJS app.
 ```
