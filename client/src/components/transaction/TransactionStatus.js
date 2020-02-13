@@ -93,10 +93,10 @@ export default class TransactionStatus extends Component {
         transactionEtherValue = firstStep.transition.transaction.value;
 
         transactionFromDisplay = transactionFromAddress.substr(0, 5) + "...." + transactionFromAddress.substr(transactionFromAddress.length - 6, transactionFromAddress.length - 1);
-        transactionFromDisplay = <a href={`${ETHQ_ENDPOINT}/tx/${transactionFromAddress}`} target="_blank">{transactionFromDisplay}</a>;
+        transactionFromDisplay = <a href={`${ETHQ_ENDPOINT}/search?q=(from:${transactionFromAddress}%20OR%20to:${transactionFromAddress})`} target="_blank">{transactionFromDisplay}</a>;
 
         transactionToDisplay = transactionToAddress.substr(0, 5) + "...." + transactionToAddress.substr(transactionToAddress.length - 6, transactionToAddress.length - 1);
-        transactionToDisplay = <a href={`${ETHQ_ENDPOINT}/tx/${transactionToAddress}`} target="_blank">{transactionToDisplay}</a>;
+        transactionToDisplay = <a href={`${ETHQ_ENDPOINT}/search?q=(from:${transactionToAddress}%20OR%20to:${transactionToAddress})`} target="_blank">{transactionToDisplay}</a>;
 
       }
     }

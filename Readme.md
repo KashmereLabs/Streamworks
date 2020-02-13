@@ -22,7 +22,7 @@ You need to have Metamask installed on your browser in order to run the demo. Me
 
 Switch metamask to Ropsten testnet from Ethereum mainnet.
 
-Now open two different browser windows to simulate the worker/manager interaction and login via different metamask accounts.
+Now open two different browser windows to simulate the contractor/manager interaction and login via different metamask accounts.
 
 One window will simulate a contractor user which will be used to create invoices.
 
@@ -33,6 +33,7 @@ Once the contractor user creates an invoice it will appear on the manager users 
 Once the invoice has been paid both the contractor and the manager can track the transaction in real-time using the transaction progress-bar that will appear on the top of both users' windows.
 
 Both types of users can audit the invoices sent and payments made in real time by navigating to the tabs belonging to the respective roles.
+
 
 ## Screenshots
 
@@ -49,10 +50,6 @@ Both types of users can audit the invoices sent and payments made in real time b
 The uses Metamask web3 authentication.
 
 It should technically work with any web3 provider but has only been tested with Metamask.
-
-Open the app in two different browser windows both of which need to have Metamask installed.
-
-Login to the app via Metamask using two different wallet addresses.
 
 You need to have some Ropsten Ether to test the app. You can obtain some for your app [here](https://faucet.ropsten.be/).
 One of them will act as a Manager and the other Contractor.
