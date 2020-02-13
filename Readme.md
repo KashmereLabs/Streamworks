@@ -1,7 +1,7 @@
 # Streamworks
 
 ### Send and recieve ethereum invoices and reconcile payments with the blockchain.
-This app if a proof of concept for a system that lets contractors send invoices to a specified approver/manager account and managers fullfill those invoices.
+This app is a proof of concept for a system that lets contractors send invoices to a specified approver/manager account and managers fullfill those invoices.
 Furthermore it lets both parties track and audit the transactions in real-time.
 
 ### This app uses DFuse library to reconcile invoice payment with blockchain data.
@@ -65,10 +65,10 @@ You need a DFuse API Key
 
 Set the environment varaibles
 ```
-REACT_APP_API_SERVER=
-REACT_APP_ETHQ_ENDPOINT=
-DFUSE_API_KEY=
-DFUSE_NETWORK=
+REACT_APP_API_SERVER= // Gateway server API
+REACT_APP_ETHQ_ENDPOINT= // https://ropsten.ethq.app or https://ethq.app depending on your environment
+REACT_APP_DFUSE_API_KEY= // Dfuse API key
+REACT_APP_DFUSE_NETWORK= // ropsten.eth.dfuse.io or mainnet.eth.dfuse.io depending on your environment
 ```
 
 
