@@ -133,13 +133,14 @@ export default class TransactionStatus extends Component {
         if (idx < steps.length - 1) {
           joiner =  <div className="stepper-line"></div>
         }
+        let itemLabel = (item.label[0] + item.label.substr(1, item.label.length - 1).toLowerCase()).replace("_", " ");
         return (
           <span>
               <div className="stepper-circle-container" key={"tx-confirmation-"+idx}>
                 <div className="stepper-circle stepper-left">
                   {stepperStep}
                 </div>
-                {item.label}
+                {itemLabel}
               </div>
               {joiner}
           </span>
