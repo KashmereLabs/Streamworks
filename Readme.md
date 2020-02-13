@@ -1,6 +1,6 @@
 # Streamworks
 
-### Send and recieve ethereum invoices and reconcile application state with blockchain transaction date.
+### Send and recieve ethereum invoices, reconcile and audit application state with blockchain transaction data.
 This app is a proof of concept for a system that lets contractors send invoices to a specified approver/manager account to fullfill those invoices.
 Furthermore it lets both parties track and audit the transactions in real-time.
 
