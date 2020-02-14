@@ -25,7 +25,7 @@ export default class UserView extends Component {
     const self = this;
     this.timer = setInterval(function() {
       self.props.getPreviousInvoices();
-    }, 4000);
+    }, 1000);
   }
 
   componentWillUnmount() {

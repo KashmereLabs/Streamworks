@@ -16,7 +16,7 @@ export default class ManagerView extends Component {
     const self = this;
     this.timer = setInterval(function() {
       self.props.listInvoices();
-    }, 4000);
+    }, 1000);
   }
 
   componentWillUnmount() {
